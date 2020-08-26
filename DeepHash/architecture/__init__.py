@@ -8,7 +8,7 @@ def img_alexnet_layers(img, batch_size, output_dim, stage, model_weights, with_t
     train_layers = []
     train_last_layer = []
     print("loading img model from %s" % model_weights)
-    net_data = dict(np.load(model_weights, encoding='bytes').item())
+    net_data = dict(np.load(model_weights, encoding='bytes', allow_pickle=True).item())
     print(list(net_data.keys()))
 
     # swap(2,1,0), bgr -> rgb
@@ -244,7 +244,7 @@ def txt_mlp_layers(txt, txt_dim, output_dim, stage, model_weights=None, with_tan
         model_weights = os.path.join(
             dir_path, "pretrained_model/reference_pretrain.npy")
 
-    net_data = dict(np.load(model_weights, encoding='bytes').item())
+    net_data = dict(np.load(model_weights, encoding='bytes', allow_pickle=True).item())
 
     # txt_fc1
     with tf.name_scope('txt_fc1'):

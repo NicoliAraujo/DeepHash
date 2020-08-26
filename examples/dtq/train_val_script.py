@@ -22,7 +22,7 @@ parser.add_argument('--cq-lambda', default=0, type=float)
 parser.add_argument('--subspace', default=4, type=int)
 parser.add_argument('--subcenter', default=256, type=int)
 parser.add_argument('--dataset', default='cifar10', type=str,
-                    choices=['cifar10', 'coco', 'nuswide_81'])
+                    choices=['cifar10', 'coco', 'nuswide_81', "visual_genome"])
 parser.add_argument('--gpus', default='0', type=str)
 parser.add_argument('--log-dir', default='tflog', type=str)
 parser.add_argument('--dist-type', default='euclidean2', type=str,
@@ -55,8 +55,8 @@ args = parser.parse_args()
 
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpus
 
-label_dims = {'cifar10': 10, 'nuswide_81': 81, 'coco': 80}
-Rs = {'cifar10': 54000, 'nuswide_81': 5000, 'coco': 5000}
+label_dims = {'cifar10': 10, 'nuswide_81': 81, 'coco': 80, 'visual_genome':80}
+Rs = {'cifar10': 54000, 'nuswide_81': 5000, 'coco': 5000, 'visual_genome':5000}
 args.R = Rs[args.dataset]
 args.label_dim = label_dims[args.dataset]
 
