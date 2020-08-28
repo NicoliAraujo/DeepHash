@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.io as sio
+# import scipy.io as sio
 import warnings
 import data_provider.image as dataset
 import model.resnet_knn as model
@@ -17,16 +17,16 @@ parser = argparse.ArgumentParser(description='Triplet Hashing',
 # parser.add_argument('--triplet-margin', default=30, type=float)
 # parser.add_argument('--select-strategy', default='margin', choices=['hard', 'all', 'margin'])
 parser.add_argument('--output-dim', default=64, type=int)   # 256, 128
-parser.add_argument('--epochs', default=100, type=int)
-parser.add_argument('--cq-lambda', default=0, type=float)
-parser.add_argument('--subspace', default=4, type=int)
-parser.add_argument('--subcenter', default=256, type=int)
+# parser.add_argument('--epochs', default=100, type=int)
+# parser.add_argument('--cq-lambda', default=0, type=float)
+# parser.add_argument('--subspace', default=4, type=int)
+# parser.add_argument('--subcenter', default=256, type=int)
 parser.add_argument('--dataset', default='cifar10', type=str,
                     choices=['cifar10', 'coco', 'nuswide_81', "visual_genome"])
 parser.add_argument('--gpus', default='0', type=str)
 parser.add_argument('--log-dir', default='tflog', type=str)
-# parser.add_argument('--dist-type', default='euclidean2', type=str,
-#                     choices=['euclidean2', 'cosine', 'inner_product', 'euclidean'])
+parser.add_argument('--dist-type', default='euclidean2', type=str,
+                    choices=['euclidean2', 'cosine', 'inner_product', 'euclidean'])
 parser.add_argument('-b', '--batch-size', default=128, type=int)
 parser.add_argument('-vb', '--val-batch-size', default=16, type=int)
 # parser.add_argument('--decay-step', default=10000, type=int)
@@ -37,13 +37,13 @@ parser.add_argument('-vb', '--val-batch-size', default=16, type=int)
 # tanh_parser.add_argument('--without-tanh', dest='with_tanh', action='store_false')
 # parser.set_defaults(with_tanh=True)
 
-parser.add_argument('--img-model', default='resnet50', type=str, 
+parser.add_argument('--img-model', default='resnet50v2', type=str, 
                     choices=["resnet50", "resnet50v2"])
-# parser.add_argument('--model-weights', type=str,
-#                     default='../../DeepHash/architecture/pretrained_model/reference_pretrain.npy')
-parser.add_argument('--finetune-all', default=True, type=bool)
-parser.add_argument('--max-iter-update-b', default=3, type=int)
-parser.add_argument('--max-iter-update-Cb', default=1, type=int)
+parser.add_argument('--model-weights', type=str,
+                    default='~/model_weights/')
+# parser.add_argument('--finetune-all', default=True, type=bool)
+# parser.add_argument('--max-iter-update-b', default=3, type=int)
+# parser.add_argument('--max-iter-update-Cb', default=1, type=int)
 parser.add_argument('--code-batch-size', default=500, type=int)
 parser.add_argument('--n-part', default=20, type=int)
 # parser.add_argument('--triplet-thresold', default=64000, type=int)
